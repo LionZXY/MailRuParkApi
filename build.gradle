@@ -1,0 +1,59 @@
+buildscript {
+    ext.ktor_version = '1.2.4'
+}
+
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.50'
+}
+
+group 'lionzxy'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "io.ktor:ktor-server-netty:$ktor_version"
+    compile "io.ktor:ktor-gson:$ktor_version"
+    compile "org.jsoup:jsoup:+"
+    compile "com.google.code.gson:gson:+"
+    compile "org.knowm.xchart:xchart:3.5.4"
+    compile "org.beryx:awt-color-factory:+"
+
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "ru.lionzxy.parkapi.ServerKt"
+    }
+
+    archiveName = this.project.name + ".jar"
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
