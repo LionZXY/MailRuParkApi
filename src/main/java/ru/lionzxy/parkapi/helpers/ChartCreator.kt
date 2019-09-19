@@ -22,7 +22,12 @@ class ChartCreator {
 
     fun getImageFile(parser: ParkMailParser): File? {
         synchronized(this) {
-            return getImageInternal(parser)
+            try {
+                return getImageInternal(parser)
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+                throw ex
+            }
         }
     }
 
@@ -56,6 +61,9 @@ class ChartCreator {
     }
 
     private fun XYChart.addSeries(plot: PlotDataModel) {
+        if  (plot.data.isEmpty()) {
+            return
+        }
         val xData = ArrayList<Date>()
         val yData = ArrayList<Long>()
 
