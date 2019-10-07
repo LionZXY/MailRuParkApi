@@ -1,7 +1,6 @@
 package ru.lionzxy.parkapi.helpers
 
 import org.beryx.awt.color.ColorFactory
-import org.jsoup.Jsoup
 import org.knowm.xchart.BitmapEncoder
 import org.knowm.xchart.XYChart
 import org.knowm.xchart.XYChartBuilder
@@ -11,9 +10,7 @@ import ru.lionzxy.parkapi.PERIOD_UPDATE_MILLIS
 import ru.lionzxy.parkapi.model.PlotDataModel
 import ru.lionzxy.parkapi.parser.ParkMailParser
 import java.io.File
-import java.lang.RuntimeException
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 private val SAVE_FILE = File("tmp/park_mail.png")
 
@@ -52,7 +49,7 @@ class ChartCreator {
         val chart = XYChartBuilder().xAxisTitle("Время")
                 .theme(Styler.ChartTheme.Matlab)
                 .yAxisTitle("Свободные места").build()
-        chart.styler.timezone = TimeZone.getTimeZone("Europe/Moscow")
+        chart.styler.timezone = TimeZone.getTimeZone("UTC")
         chart.styler.datePattern = "HH:mm"
         chart.styler.legendPosition = Styler.LegendPosition.InsideN
 
