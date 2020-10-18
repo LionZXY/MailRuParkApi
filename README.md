@@ -34,7 +34,7 @@ version: "3.8"
 
 services:
   mailruparkapi:
-    image: "lionzxy/mailruparkapi:1.1"
+    image: "lionzxy/mailruparkapi:1.1.1"
     container_name: mailruparkapi
     restart: unless-stopped
     ports:
