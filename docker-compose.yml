@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  mailruparkapi:
+    build: .
+    container_name: mailruparkapi
+    restart: unless-stopped
+    ports:
+      - 8000:8000
